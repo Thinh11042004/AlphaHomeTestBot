@@ -1,4 +1,4 @@
-# OptiBot Mini-Clone
+<img width="1341" height="611" alt="image" src="https://github.com/user-attachments/assets/18d458ea-539e-4ffc-9a5d-2220b81322fb" /># OptiBot Mini-Clone
 
 Python 3.12 pipeline that scrapes OptiSigns Help Center articles through the Zendesk API, converts them to Markdown, detects changed articles by SHA256, and uploads deltas to an OpenAI vector store-backed assistant when an API key is provided.
 
@@ -32,6 +32,13 @@ docker run -e API_KEY=... main.py
 Railway cron is configured in `railway.json` for `0 3 * * *`. Local run artifacts are in [`data/logs/`](data/logs/); 
 
 Chunking strategy: 900 tokens with 120 token overlap, chosen to keep support steps together while preserving context across chunks. Delta detection hashes normalized Markdown and uploads only `added` or `updated` files.
+
+## ScreenShot
+<img width="1197" height="737" alt="image" src="https://github.com/user-attachments/assets/a5d0b05a-2cf0-4d42-9214-eeb7ae110c8b" />
+<img width="1496" height="883" alt="image" src="https://github.com/user-attachments/assets/50979b92-83e1-4cc8-a421-8e2221f4c985" />
+<img width="1906" height="942" alt="image" src="https://github.com/user-attachments/assets/a29adbe2-8f05-406f-b0f7-4bd1e3f379c6" />
+<img width="1877" height="912" alt="image" src="https://github.com/user-attachments/assets/2fe09c87-33f7-4296-a419-4dbfe74ebb87" />
+<img width="1882" height="933" alt="image" src="https://github.com/user-attachments/assets/ae14d86e-5d82-4af4-be85-c90ab2a243e1" />
 
 
 
