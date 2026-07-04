@@ -1,6 +1,6 @@
 {
   "log_path": "data\\logs\\vector_upload.json",
-  "run_at": "2026-07-04T08:01:59.862657+00:00",
+  "run_at": "2026-07-04T07:32:35.392744+00:00",
   "upload": {
     "deleted_old_files": [],
     "delta_counts": {
@@ -9,12 +9,12 @@
       "skipped": 30,
       "updated": 0
     },
-    "dry_run": false,
+    "dry_run": true,
     "enabled": false,
     "estimated_chunks": 0,
     "file_counts": null,
     "files": [],
-    "skipped_reason": "No added or changed Markdown files to upload.",
+    "skipped_reason": "Dry run: no files uploaded.",
     "uploaded_files": 0,
     "vector_store_file_batch_id": null,
     "vector_store_id": "vs_6a489e3057388191963341a2e00a0677"
