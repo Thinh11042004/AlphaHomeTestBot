@@ -1,0 +1,9 @@
+{
+  "action": "updated",
+  "assistant_id": "asst_NUz6Ew6hdNJmq09TYotMUaCS",
+  "model": "gpt-4o-mini",
+  "model_fallback_reason": "gpt-5 is not supported by this Assistants API path; using gpt-4o-mini.",
+  "playground_url": "https://platform.openai.com/playground/assistants?assistant=asst_NUz6Ew6hdNJmq09TYotMUaCS",
+  "requested_model": "gpt-5",
+  "vector_store_id": "vs_6a489e3057388191963341a2e00a0677"
+}
