@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "files": {
     "data/markdown/ai-camera-app-quick-start.md": {
       "bootstrapped_from": "remote_vector_store",
@@ -242,5 +243,10 @@
     }
   },
   "updated_at": "2026-07-04T07:32:35.391745+00:00",
+=======
+  "files": {},
+  "reset_reason": "All vector store files deleted by operator request.",
+  "updated_at": "2026-07-04T08:29:17.866722+00:00",
+>>>>>>> Stashed changes
   "vector_store_id": "vs_6a489e3057388191963341a2e00a0677"
 }
