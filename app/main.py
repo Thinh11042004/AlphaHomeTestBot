@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from app.config.settings import Settings
+from app.services.assistant import AssistantRunError, OptiBotAssistantService
 from app.services.cleaner import HtmlMarkdownCleaner
 from app.services.logger import ScrapeLogger
 from app.services.scraper import ZendeskScraper
@@ -23,11 +25,20 @@ from app.services.vector_store import (
 from app.utils.files import ensure_dir, write_text
 
 
+def print_text(text: str) -> None:
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        sys.stdout.buffer.write(text.encode("utf-8", errors="replace") + b"\n")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Scrape Zendesk support articles, clean Markdown, and upload to OpenAI vector store")
     parser.add_argument("--limit", type=int, default=None, help="Maximum articles to fetch")
     parser.add_argument("--skip-upload", action="store_true", help="Only scrape Markdown; do not upload to OpenAI vector store")
     parser.add_argument("--upload-only", action="store_true", help="Upload existing Markdown files without scraping Zendesk")
+    parser.add_argument("--setup-assistant", action="store_true", help="Create or update the OpenAI assistant and attach the vector store")
+    parser.add_argument("--ask", help="Ask the configured OptiBot assistant")
     parser.add_argument("--dry-run", action="store_true", help="Preview vector-store upload without calling OpenAI")
     parser.add_argument("--log-json", action="store_true", help="Print final pipeline summary as JSON")
     return parser
@@ -100,6 +111,31 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
     settings = Settings.from_env()
+
+    if args.setup_assistant:
+        summary = OptiBotAssistantService(settings).setup()
+        if args.log_json:
+            print(json.dumps(summary, indent=2, sort_keys=True))
+        else:
+            print(
+                "Assistant setup complete: "
+                f"assistant_id={summary['assistant_id']} "
+                f"model={summary['model']} "
+                f"vector_store_id={summary['vector_store_id']}"
+            )
+            if summary["model_fallback_reason"]:
+                print(summary["model_fallback_reason"])
+            print(f"Playground: {summary['playground_url']}")
+        return 0
+
+    if args.ask:
+        try:
+            answer = OptiBotAssistantService(settings).ask(args.ask)
+        except AssistantRunError as exc:
+            print(f"Assistant run failed: {exc}")
+            return 2
+        print_text(answer)
+        return 0
 
     if args.upload_only:
         summary = upload_markdown_to_vector_store(settings, dry_run=args.dry_run)

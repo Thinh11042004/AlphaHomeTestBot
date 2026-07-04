@@ -20,6 +20,9 @@ class Settings:
     logs_dir: Path
     vector_state_path: Path
     openai_api_key: str
+    openai_model: str
+    openai_assistant_model: str
+    openai_assistant_id: str | None
     openai_vector_store_id: str | None
     openai_vector_store_name: str
     upload_concurrency: int
@@ -38,7 +41,7 @@ class Settings:
         data_dir = Path(os.getenv("DATA_DIR", "data"))
         markdown_dir = Path(os.getenv("MARKDOWN_DIR", str(data_dir / "markdown")))
         logs_dir = Path(os.getenv("LOGS_DIR", str(data_dir / "logs")))
-        vector_state_path = Path(os.getenv("VECTOR_STATE_PATH", str(data_dir / "vector_state.json")))
+        vector_state_path = Path(str(data_dir / "vector_state.json"))
         openai_key = os.getenv("OPENAI_API_KEY") or os.getenv("API_KEY", "")
 
         return cls(
@@ -50,9 +53,12 @@ class Settings:
             logs_dir=logs_dir,
             vector_state_path=vector_state_path,
             openai_api_key=openai_key,
+            openai_model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+            openai_assistant_model=os.getenv("OPENAI_ASSISTANT_MODEL", "gpt-4o-mini"),
+            openai_assistant_id=os.getenv("OPENAI_ASSISTANT_ID") or None,
             openai_vector_store_id=os.getenv("OPENAI_VECTOR_STORE_ID") or None,
             openai_vector_store_name=os.getenv("OPENAI_VECTOR_STORE_NAME", "optibot-mini-clone"),
-            upload_concurrency=max(1, int(os.getenv("UPLOAD_CONCURRENCY", "5"))),
+            upload_concurrency=max(1, int(os.getenv("UPLOAD_CONCURRENCY", "30"))),
             chunk_size_tokens=int(os.getenv("CHUNK_SIZE_TOKENS", "900")),
             chunk_overlap_tokens=int(os.getenv("CHUNK_OVERLAP_TOKENS", "120")),
             request_timeout_seconds=float(os.getenv("REQUEST_TIMEOUT_SECONDS", "30")),
