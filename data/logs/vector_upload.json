@@ -1,10 +1,6 @@
 {
   "log_path": "data\\logs\\vector_upload.json",
-<<<<<<< Updated upstream
   "run_at": "2026-07-04T07:32:35.392744+00:00",
-=======
-  "run_at": "2026-07-04T08:24:21.164689+00:00",
->>>>>>> Stashed changes
   "upload": {
     "deleted_old_files": [],
     "delta_counts": {
