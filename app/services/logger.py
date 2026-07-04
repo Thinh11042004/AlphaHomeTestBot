@@ -33,3 +33,14 @@ class ScrapeLogger:
         }
         log_path.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
         return summary
+
+    def write_upload_run(self, upload_summary: dict) -> dict:
+        ensure_dir(self.logs_dir)
+        log_path = self.logs_dir / "vector_upload.json"
+        summary = {
+            "run_at": datetime.now(UTC).isoformat(),
+            "upload": upload_summary,
+            "log_path": str(log_path),
+        }
+        log_path.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
+        return summary
