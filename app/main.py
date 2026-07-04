@@ -167,8 +167,13 @@ def main() -> int:
         )
         if not args.skip_upload:
             upload = summary["vector_upload"]["upload"]
+            delta = upload.get("delta_counts", {})
             print(
                 "Vector upload complete: "
+                f"added={delta.get('added', 0)} "
+                f"updated={delta.get('updated', 0)} "
+                f"skipped={delta.get('skipped', 0)} "
+                f"deleted={delta.get('deleted', 0)} "
                 f"uploaded={upload['uploaded_files']} "
                 f"estimated_chunks={upload['estimated_chunks']} "
                 f"vector_store_id={upload['vector_store_id']} "

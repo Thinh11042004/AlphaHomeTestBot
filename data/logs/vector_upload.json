@@ -1,6 +1,6 @@
 {
   "log_path": "data\\logs\\vector_upload.json",
-  "run_at": "2026-07-04T07:32:35.392744+00:00",
+  "run_at": "2026-07-04T08:01:59.862657+00:00",
   "upload": {
     "deleted_old_files": [],
     "delta_counts": {
