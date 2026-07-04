@@ -18,6 +18,7 @@ class Settings:
     data_dir: Path
     markdown_dir: Path
     logs_dir: Path
+    vector_state_path: Path
     openai_api_key: str
     openai_vector_store_id: str | None
     openai_vector_store_name: str
@@ -37,6 +38,7 @@ class Settings:
         data_dir = Path(os.getenv("DATA_DIR", "data"))
         markdown_dir = Path(os.getenv("MARKDOWN_DIR", str(data_dir / "markdown")))
         logs_dir = Path(os.getenv("LOGS_DIR", str(data_dir / "logs")))
+        vector_state_path = Path(os.getenv("VECTOR_STATE_PATH", str(data_dir / "vector_state.json")))
         openai_key = os.getenv("OPENAI_API_KEY") or os.getenv("API_KEY", "")
 
         return cls(
@@ -46,6 +48,7 @@ class Settings:
             data_dir=data_dir,
             markdown_dir=markdown_dir,
             logs_dir=logs_dir,
+            vector_state_path=vector_state_path,
             openai_api_key=openai_key,
             openai_vector_store_id=os.getenv("OPENAI_VECTOR_STORE_ID") or None,
             openai_vector_store_name=os.getenv("OPENAI_VECTOR_STORE_NAME", "optibot-mini-clone"),

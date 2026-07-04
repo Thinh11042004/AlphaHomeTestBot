@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 
 from app.config.settings import Settings
 from app.services.cleaner import HtmlMarkdownCleaner
@@ -9,9 +10,15 @@ from app.services.logger import ScrapeLogger
 from app.services.scraper import ZendeskScraper
 from app.services.vector_store import (
     OpenAIVectorStoreUploader,
+    bootstrap_state_from_remote_vector_store,
+    build_no_change_upload_summary,
     build_dry_run_summary,
     build_skipped_upload_summary,
+    classify_upload_delta,
     collect_markdown_paths,
+    load_vector_state,
+    save_vector_state,
+    update_vector_state_after_upload,
 )
 from app.utils.files import ensure_dir, write_text
 
@@ -45,19 +52,46 @@ def scrape_to_markdown(settings: Settings, *, limit: int | None) -> dict:
 def upload_markdown_to_vector_store(settings: Settings, *, dry_run: bool) -> dict:
     ensure_dir(settings.logs_dir)
     markdown_paths = collect_markdown_paths(settings.markdown_dir)
+    state = load_vector_state(settings, markdown_paths)
+    delta = classify_upload_delta(markdown_paths, state)
+    upload_paths = [settings.markdown_dir / Path(key).name for key in delta["upload_keys"]]
+
+    if (
+        not dry_run
+        and settings.has_real_openai_key
+        and settings.openai_vector_store_id
+        and not state.get("files")
+        and upload_paths
+    ):
+        remote_state = bootstrap_state_from_remote_vector_store(settings, markdown_paths)
+        if remote_state.get("files"):
+            state = remote_state
+            delta = classify_upload_delta(markdown_paths, state)
+            upload_paths = [settings.markdown_dir / Path(key).name for key in delta["upload_keys"]]
 
     if not markdown_paths:
-        upload_summary = build_skipped_upload_summary(settings, "No Markdown files found to upload.", dry_run=dry_run)
+        upload_summary = build_skipped_upload_summary(settings, "No Markdown files found to upload.", dry_run=dry_run, delta=delta)
     elif dry_run:
-        upload_summary = build_dry_run_summary(settings, markdown_paths)
+        upload_summary = build_dry_run_summary(settings, upload_paths, delta=delta)
     elif not settings.has_real_openai_key:
         upload_summary = build_skipped_upload_summary(
             settings,
             "No non-placeholder API key found in OPENAI_API_KEY or API_KEY.",
+            delta=delta,
         )
+    elif not upload_paths:
+        upload_summary = build_no_change_upload_summary(settings, delta)
+        save_vector_state(settings, update_vector_state_after_upload(settings, state, delta, upload_summary))
     else:
         uploader = OpenAIVectorStoreUploader(settings)
-        upload_summary = uploader.upload_markdown_files(markdown_paths)
+        upload_summary = uploader.upload_markdown_files(upload_paths, previous_records=delta["previous_records"])
+        upload_summary["delta_counts"] = {
+            "added": len(delta["added"]),
+            "updated": len(delta["updated"]),
+            "skipped": len(delta["skipped"]),
+            "deleted": len(delta["deleted"]),
+        }
+        save_vector_state(settings, update_vector_state_after_upload(settings, state, delta, upload_summary))
 
     return ScrapeLogger(settings.logs_dir).write_upload_run(upload_summary)
 

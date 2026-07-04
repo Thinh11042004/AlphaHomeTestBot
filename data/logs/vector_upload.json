@@ -1,142 +1,22 @@
 {
   "log_path": "data\\logs\\vector_upload.json",
-  "run_at": "2026-07-04T07:13:34.286444+00:00",
+  "run_at": "2026-07-04T07:32:35.392744+00:00",
   "upload": {
-    "dry_run": false,
-    "enabled": true,
-    "estimated_chunks": 61,
-    "file_counts": {
-      "cancelled": 0,
-      "completed": 30,
-      "failed": 0,
-      "in_progress": 0,
-      "total": 30
+    "deleted_old_files": [],
+    "delta_counts": {
+      "added": 0,
+      "deleted": 0,
+      "skipped": 30,
+      "updated": 0
     },
-    "files": [
-      {
-        "openai_file_id": "file-Xcy5prq3A6S46JgM4qjyJa",
-        "path": "data\\markdown\\ai-camera-app-quick-start.md"
-      },
-      {
-        "openai_file_id": "file-ToR1EVnZaATphXjUv5AUi4",
-        "path": "data\\markdown\\connect-cisco-webex-rooms-to-optisigns-digital-signage.md"
-      },
-      {
-        "openai_file_id": "file-VFUNDutbrmdQAvGVzEqjae",
-        "path": "data\\markdown\\connect-google-meet-hardware-to-optisigns-digital-signage.md"
-      },
-      {
-        "openai_file_id": "file-GJK6hMr7jhnwCysbqiu4uR",
-        "path": "data\\markdown\\connect-microsoft-teams-rooms-to-optisigns-digital-signage.md"
-      },
-      {
-        "openai_file_id": "file-XPdkgaTEBmYDsbn7W4bqX3",
-        "path": "data\\markdown\\connect-zoom-rooms-to-optisigns-digital-signage.md"
-      },
-      {
-        "openai_file_id": "file-4JupHNFVrbU9annUz3Hmh4",
-        "path": "data\\markdown\\does-optisigns-offer-non-profit-education-discount.md"
-      },
-      {
-        "openai_file_id": "file-YGrhdygYCBN4uDpesjcZFn",
-        "path": "data\\markdown\\engage-plan-faqs.md"
-      },
-      {
-        "openai_file_id": "file-KjydWTYT63w5kbHnVmSq3B",
-        "path": "data\\markdown\\how-can-i-remove-delete-uploaded-files-or-assets.md"
-      },
-      {
-        "openai_file_id": "file-7u9n5ye6YCwVaQx38Abpgp",
-        "path": "data\\markdown\\how-to-display-a-snowflake-dashboard-with-optisigns.md"
-      },
-      {
-        "openai_file_id": "file-589jdW441UNYrjsEAQ13mb",
-        "path": "data\\markdown\\how-to-display-content-inside-websites-that-require-login.md"
-      },
-      {
-        "openai_file_id": "file-CyYXw4SFcbBnoZpGaj9g1f",
-        "path": "data\\markdown\\how-to-enable-disable-auto-update-for-optisigns-app-on-fire-tv.md"
-      },
-      {
-        "openai_file_id": "file-DrMDfn73TCDwJosoD4HTMx",
-        "path": "data\\markdown\\how-to-factory-reset-your-fire-stick-device.md"
-      },
-      {
-        "openai_file_id": "file-QE7733T4tbXbfUxFLCgotU",
-        "path": "data\\markdown\\how-to-install-an-apk-file-on-your-fire-tv.md"
-      },
-      {
-        "openai_file_id": "file-7kJbxmxDP6TsGTvt2DR5Cu",
-        "path": "data\\markdown\\how-to-manage-sub-account-billing-with-optisigns.md"
-      },
-      {
-        "openai_file_id": "file-HPkhZmpqYSenG4niB8d9x2",
-        "path": "data\\markdown\\how-to-order-a-preconfigured-optisigns-android-player-device.md"
-      },
-      {
-        "openai_file_id": "file-Vr5TBa9C5MsW1JFmugiHF8",
-        "path": "data\\markdown\\how-to-re-encode-video-files-for-better-compatibility-on-your-devices.md"
-      },
-      {
-        "openai_file_id": "file-88iDcQm5j9WZxVqS1m7YhE",
-        "path": "data\\markdown\\how-to-share-playlist-and-folder-with-external-users.md"
-      },
-      {
-        "openai_file_id": "file-FAQyPBmKK3bWDrw7ujoKPz",
-        "path": "data\\markdown\\how-to-use-optisigns-template-designer-to-make-your-digital-signs-in-minutes.md"
-      },
-      {
-        "openai_file_id": "file-3aJ1zDFce9gpRVNyDPPVpP",
-        "path": "data\\markdown\\how-to-use-rss-feeds-with-optisigns.md"
-      },
-      {
-        "openai_file_id": "file-D8QJuJ4ZMbUJ4PwwHNiTKr",
-        "path": "data\\markdown\\how-to-use-the-data-studio-app.md"
-      },
-      {
-        "openai_file_id": "file-72D3zWedFev2DpNxAy4xqF",
-        "path": "data\\markdown\\how-to-use-website-screenshot-app.md"
-      },
-      {
-        "openai_file_id": "file-G5nAibf4WsjrmdKQuaeSWf",
-        "path": "data\\markdown\\how-to-use-youtube-with-optisigns.md"
-      },
-      {
-        "openai_file_id": "file-LhSsqg3CV8cxjyk4hfjB47",
-        "path": "data\\markdown\\my-image-content-are-bleeding-off-the-screens-with-fire-tv-need-screen-calibration.md"
-      },
-      {
-        "openai_file_id": "file-5zKjSuYZE4yijPVVysevkj",
-        "path": "data\\markdown\\optisigns-digital-signage-app-for-zoom-adding-using-and-removing-the-app.md"
-      },
-      {
-        "openai_file_id": "file-DWGR9KeK5UFhpGmJkoepsf",
-        "path": "data\\markdown\\optistick-troubleshooting-guide.md"
-      },
-      {
-        "openai_file_id": "file-QJcpFyR7ZK9R4U1BafSRTL",
-        "path": "data\\markdown\\optistick.md"
-      },
-      {
-        "openai_file_id": "file-5npYpkHUcRuskAeL8c9AtB",
-        "path": "data\\markdown\\pre-configure-wi-fi-with-optisigns-devices.md"
-      },
-      {
-        "openai_file_id": "file-PbMiGSFDt9LFJPU5bhEE2x",
-        "path": "data\\markdown\\room-integrations-turn-your-meeting-rooms-into-digital-signage.md"
-      },
-      {
-        "openai_file_id": "file-3xFdEMXpq13HzJnW6DadUC",
-        "path": "data\\markdown\\using-the-japan-earthquake-app.md"
-      },
-      {
-        "openai_file_id": "file-CZpKiNbVt9GhXEHSMwcD2f",
-        "path": "data\\markdown\\whitelist-optisigns-ip-addresses-ports.md"
-      }
-    ],
-    "skipped_reason": null,
-    "uploaded_files": 30,
-    "vector_store_file_batch_id": "vs_6a489e3057388191963341a2e00a0677",
+    "dry_run": false,
+    "enabled": false,
+    "estimated_chunks": 0,
+    "file_counts": null,
+    "files": [],
+    "skipped_reason": "No added or changed Markdown files to upload.",
+    "uploaded_files": 0,
+    "vector_store_file_batch_id": null,
     "vector_store_id": "vs_6a489e3057388191963341a2e00a0677"
   }
 }
